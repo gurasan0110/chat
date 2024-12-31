@@ -9,7 +9,37 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Center(
-        child: Text(ref.watch(homePageNotifierProvider).toString()),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(ref.watch(homePageNotifierProvider).toString()),
+            TextField(
+              decoration: InputDecoration(hintText: 'email'),
+              onChanged: ref.read(homePageNotifierProvider.notifier).setEmail,
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: 'password'),
+              onChanged:
+                  ref.read(homePageNotifierProvider.notifier).setPassword,
+            ),
+            TextButton(
+              onPressed: ref
+                  .read(homePageNotifierProvider.notifier)
+                  .createUserWithEmailAndPassword,
+              child: Text('createUserWithEmailAndPassword'),
+            ),
+            TextButton(
+              onPressed: ref
+                  .read(homePageNotifierProvider.notifier)
+                  .signInWithEmailAndPassword,
+              child: Text('signInWithEmailAndPassword'),
+            ),
+            TextButton(
+              onPressed: ref.read(homePageNotifierProvider.notifier).signOut,
+              child: Text('signOut'),
+            ),
+          ],
+        ),
       ),
     );
   }

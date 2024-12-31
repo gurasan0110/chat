@@ -12,4 +12,26 @@ class DefaultUserRepository implements UserRepository {
 
   @override
   Stream<User?> userChanges() => _service.userChanges();
+
+  @override
+  Future<void> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    await _service.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
+
+  @override
+  Future<void> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    await _service.signInWithEmailAndPassword(email: email, password: password);
+  }
+
+  @override
+  Future<void> signOut() => _service.signOut();
 }
