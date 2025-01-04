@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class DefaultUserService implements UserService {
   DefaultUserService();
 
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   User? get currentUser => _auth.currentUser;

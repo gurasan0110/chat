@@ -1,9 +1,12 @@
 import 'package:chat/data/repositories/user_repository/user_repository.dart';
+import 'package:chat/data/services/user_service/default_user_service.dart';
 import 'package:chat/data/services/user_service/user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class DefaultUserRepository implements UserRepository {
-  const DefaultUserRepository(this._service);
+  DefaultUserRepository({
+    UserService? service,
+  }) : _service = service ?? DefaultUserService();
 
   final UserService _service;
 
