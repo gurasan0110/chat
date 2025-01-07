@@ -5,9 +5,13 @@ class UserService {
 
   final _auth = FirebaseAuth.instance;
 
-  User? get currentUser => _auth.currentUser;
+  User? get currentUser {
+    return _auth.currentUser;
+  }
 
-  Stream<User?> userChanges() => _auth.userChanges();
+  Stream<User?> userChanges() {
+    return _auth.userChanges();
+  }
 
   Future<UserCredential> createUserWithEmailAndPassword({
     required String email,
@@ -23,8 +27,23 @@ class UserService {
     required String email,
     required String password,
   }) {
-    return _auth.signInWithEmailAndPassword(email: email, password: password);
+    return _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 
-  Future<void> signOut() => _auth.signOut();
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
+
+  Future<void> updateProfile({
+    String? displayName,
+    String? photoURL,
+  }) async {
+    await currentUser?.updateProfile(
+      displayName: displayName,
+      photoURL: photoURL,
+    );
+  }
 }

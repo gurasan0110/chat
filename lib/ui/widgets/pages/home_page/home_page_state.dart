@@ -9,5 +9,6 @@ class HomePageState with _$HomePageState {
     User? user,
     @Default('') String email,
     @Default('') String password,
+    @Default(true) bool obscureText,
   }) = _HomePageState;
 }

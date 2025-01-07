@@ -19,6 +19,7 @@ mixin _$HomePageState {
   User? get user => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  bool get obscureText => throw _privateConstructorUsedError;
 
   /// Create a copy of HomePageState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,7 @@ abstract class $HomePageStateCopyWith<$Res> {
           HomePageState value, $Res Function(HomePageState) then) =
       _$HomePageStateCopyWithImpl<$Res, HomePageState>;
   @useResult
-  $Res call({User? user, String email, String password});
+  $Res call({User? user, String email, String password, bool obscureText});
 }
 
 /// @nodoc
@@ -54,6 +55,7 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
     Object? user = freezed,
     Object? email = null,
     Object? password = null,
+    Object? obscureText = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -68,6 +70,10 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      obscureText: null == obscureText
+          ? _value.obscureText
+          : obscureText // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -80,7 +86,7 @@ abstract class _$$HomePageStateImplCopyWith<$Res>
       __$$HomePageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User? user, String email, String password});
+  $Res call({User? user, String email, String password, bool obscureText});
 }
 
 /// @nodoc
@@ -99,6 +105,7 @@ class __$$HomePageStateImplCopyWithImpl<$Res>
     Object? user = freezed,
     Object? email = null,
     Object? password = null,
+    Object? obscureText = null,
   }) {
     return _then(_$HomePageStateImpl(
       user: freezed == user
@@ -113,6 +120,10 @@ class __$$HomePageStateImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      obscureText: null == obscureText
+          ? _value.obscureText
+          : obscureText // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -120,7 +131,11 @@ class __$$HomePageStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomePageStateImpl implements _HomePageState {
-  const _$HomePageStateImpl({this.user, this.email = '', this.password = ''});
+  const _$HomePageStateImpl(
+      {this.user,
+      this.email = '',
+      this.password = '',
+      this.obscureText = true});
 
   @override
   final User? user;
@@ -130,10 +145,13 @@ class _$HomePageStateImpl implements _HomePageState {
   @override
   @JsonKey()
   final String password;
+  @override
+  @JsonKey()
+  final bool obscureText;
 
   @override
   String toString() {
-    return 'HomePageState(user: $user, email: $email, password: $password)';
+    return 'HomePageState(user: $user, email: $email, password: $password, obscureText: $obscureText)';
   }
 
   @override
@@ -144,11 +162,14 @@ class _$HomePageStateImpl implements _HomePageState {
             (identical(other.user, user) || other.user == user) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.obscureText, obscureText) ||
+                other.obscureText == obscureText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, email, password);
+  int get hashCode =>
+      Object.hash(runtimeType, user, email, password, obscureText);
 
   /// Create a copy of HomePageState
   /// with the given fields replaced by the non-null parameter values.
@@ -163,7 +184,8 @@ abstract class _HomePageState implements HomePageState {
   const factory _HomePageState(
       {final User? user,
       final String email,
-      final String password}) = _$HomePageStateImpl;
+      final String password,
+      final bool obscureText}) = _$HomePageStateImpl;
 
   @override
   User? get user;
@@ -171,6 +193,8 @@ abstract class _HomePageState implements HomePageState {
   String get email;
   @override
   String get password;
+  @override
+  bool get obscureText;
 
   /// Create a copy of HomePageState
   /// with the given fields replaced by the non-null parameter values.

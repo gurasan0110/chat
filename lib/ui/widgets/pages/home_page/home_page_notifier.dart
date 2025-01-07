@@ -12,34 +12,44 @@ class HomePageNotifier extends _$HomePageNotifier {
 
   @override
   HomePageState build() {
-    final sub = _repository
-        .userChanges()
-        .listen((user) => state = state.copyWith(user: user));
+    final sub = _repository.userChanges().listen((user) {
+      state = state.copyWith(user: user);
+    });
 
     ref.onDispose(sub.cancel);
 
-    return HomePageState(user: _repository.currentUser);
+    return HomePageState(user: _repository.user);
   }
 
-  void setEmail(String email) => state = state.copyWith(email: email);
+  void setEmail(String email) {
+    final trimmedEmail = email.trim();
+    state = state.copyWith(email: trimmedEmail);
+  }
 
   void setPassword(String password) {
-    state = state.copyWith(password: password);
+    final trimmedPassword = password.trim();
+    state = state.copyWith(password: trimmedPassword);
   }
 
-  Future<void> createUserWithEmailAndPassword() async {
-    await _repository.createUserWithEmailAndPassword(
+  void toggleObscureText() {
+    state = state.copyWith(obscureText: !state.obscureText);
+  }
+
+  Future<void> signUp() async {
+    await _repository.signUp(
       email: state.email,
       password: state.password,
     );
   }
 
-  Future<void> signInWithEmailAndPassword() async {
-    await _repository.signInWithEmailAndPassword(
+  Future<void> signIn() async {
+    await _repository.signIn(
       email: state.email,
       password: state.password,
     );
   }
 
-  Future<void> signOut() => _repository.signOut();
+  Future<void> signOut() async {
+    await _repository.signOut();
+  }
 }

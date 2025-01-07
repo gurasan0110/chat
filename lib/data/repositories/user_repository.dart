@@ -6,11 +6,15 @@ class UserRepository {
 
   final _service = UserService();
 
-  User? get currentUser => _service.currentUser;
+  User? get user {
+    return _service.currentUser;
+  }
 
-  Stream<User?> userChanges() => _service.userChanges();
+  Stream<User?> userChanges() {
+    return _service.userChanges();
+  }
 
-  Future<UserCredential> createUserWithEmailAndPassword({
+  Future<UserCredential> signUp({
     required String email,
     required String password,
   }) {
@@ -20,7 +24,7 @@ class UserRepository {
     );
   }
 
-  Future<UserCredential> signInWithEmailAndPassword({
+  Future<UserCredential> signIn({
     required String email,
     required String password,
   }) {
@@ -30,5 +34,17 @@ class UserRepository {
     );
   }
 
-  Future<void> signOut() => _service.signOut();
+  Future<void> signOut() async {
+    await _service.signOut();
+  }
+
+  Future<void> updateProfile({
+    String? name,
+    String? imageURL,
+  }) async {
+    await _service.updateProfile(
+      displayName: name ?? user?.displayName,
+      photoURL: imageURL ?? user?.photoURL,
+    );
+  }
 }

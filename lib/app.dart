@@ -1,4 +1,4 @@
-import 'package:chat/ui/widgets/pages/home_page/home_page.dart';
+import 'package:chat/ui/widgets/pages/home_page/widgets/home_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
