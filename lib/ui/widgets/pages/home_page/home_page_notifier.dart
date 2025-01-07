@@ -1,4 +1,4 @@
-import 'package:chat/data/repositories/user_repository/default_user_repository.dart';
+import 'package:chat/data/repositories/user_repository.dart';
 import 'package:chat/ui/widgets/pages/home_page/home_page_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,7 +8,7 @@ part 'home_page_notifier.g.dart';
 class HomePageNotifier extends _$HomePageNotifier {
   HomePageNotifier();
 
-  final _repository = DefaultUserRepository();
+  final _repository = UserRepository();
 
   @override
   HomePageState build() {
